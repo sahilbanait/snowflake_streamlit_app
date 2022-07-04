@@ -3,4 +3,6 @@ import requests
 import streamlit
 import snowflake.connector
 
-streamlit.text("Snowflake")
+conn = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+cur = conn.cursor()
+cur.execute("SELECT CURRENT_ACCOUNT()")
